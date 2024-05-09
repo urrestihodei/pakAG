@@ -3,7 +3,7 @@ Gure egoitza eta gidariak komunikatuta izateko eta paketeen banaketa dinamikoa i
 Alde batetik, egoitzan langile bat daukagu. Langile hau paketeen esleipenaz arduratuko da, baita pakete berriak, bidalketak eta langile berriak kudeatzeaz ere.
 Bestalde, banatzaileak ditugu, eta banatzaileak uneoro ikusiko du berari egokitu zaizkion paketeak zeintzuk diren eta hauek kudeatzeko aukera izango du bere banaketa hoberen egiteko.
 
-Eskakizunak
+## Eskakizunak
 Kudeatzailea:
 	Bere aplikazio propioa izango du eta ezingo da beste inor sartu. Makina bakarrean egongo da instalatuta.
 	Banatzaileen kudeaketa egingo du: gehitu, kendu, editatu.
