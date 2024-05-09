@@ -1,5 +1,6 @@
 # Bezero eskaera
-Gure egoitza eta gidariak komunikatuta izateko eta paketeen banaketa dinamikoa izan dadin, sistema informatiko baten beharra dugula ikusi dugu. Sistema informatiko honek, egoitzan antolatutako paketeen banaketa gidari/banatzaileek beren gailuetan eskura izateko asmoa daukagu. #
+Gure egoitza eta gidariak komunikatuta izateko eta paketeen banaketa dinamikoa izan dadin, sistema informatiko baten beharra dugula ikusi dugu. Sistema informatiko honek, egoitzan antolatutako paketeen banaketa gidari/banatzaileek beren gailuetan eskura izateko asmoa daukagu. 
+
 Alde batetik, egoitzan langile bat daukagu. Langile hau paketeen esleipenaz arduratuko da, baita pakete berriak, bidalketak eta langile berriak kudeatzeaz ere.
 Bestalde, banatzaileak ditugu, eta banatzaileak uneoro ikusiko du berari egokitu zaizkion paketeak zeintzuk diren eta hauek kudeatzeko aukera izango du bere banaketa hoberen egiteko.
 
