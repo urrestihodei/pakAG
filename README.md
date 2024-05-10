@@ -19,5 +19,5 @@ Bestalde, banatzaileak ditugu, eta banatzaileak uneoro ikusiko du berari egokitu
 -	Bere historiala ikustea izango du.
 
 # pakAG Aplikazioaren diseinua
-!(aaa.png)
+![Testua](aaa.png)
 
