@@ -18,8 +18,6 @@ Bestalde, banatzaileak ditugu, eta banatzaileak uneoro ikusiko du berari egokitu
 -	Uneko banaketa zein den ikusiko du. Eta entrega egiten duenean halaxe markatuko du.
 -	Bere historiala ikustea izango du.
 
-
-
 # pakAG Aplikazioaren diseinua
 ![Texto alternativo](aaa.png)
 
