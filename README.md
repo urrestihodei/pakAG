@@ -17,6 +17,7 @@ Bestalde, banatzaileak ditugu, eta banatzaileak uneoro ikusiko du berari egokitu
 -	Zein banaketa dituen ikusiko du eta haietatik aukeratuko du zein nahi duen unekora pasa.
 -	Uneko banaketa zein den ikusiko du. Eta entrega egiten duenean halaxe markatuko du.
 -	Bere historiala ikustea izango du.
+
   
 # pakAG Aplikazioaren diseinua
 ![Texto alternativo](aaa.png)
