@@ -19,5 +19,5 @@ Bestalde, banatzaileak ditugu, eta banatzaileak uneoro ikusiko du berari egokitu
 -	Bere historiala ikustea izango du.
 # pakAG
 
-![Texto alternativo](C:\Users\1ag3.hodeurre\Desktop)
+![Texto alternativo](C:\Users\1ag3.hodeurre\Desktop\aa.png)
 
