@@ -19,4 +19,5 @@ Bestalde, banatzaileak ditugu, eta banatzaileak uneoro ikusiko du berari egokitu
 -	Bere historiala ikustea izango du.
 # pakAG
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
+![Texto alternativo](C:\Users\1ag3.hodeurre\Desktop)
+
