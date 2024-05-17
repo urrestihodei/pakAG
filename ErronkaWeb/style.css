@@ -1,0 +1,101 @@
+/* Estilos personalizados */
+
+/* Fondo con gradiente */
+body, html {
+    height: 100%; /* Ajusta la altura del cuerpo y HTML al 100% */
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
+}
+
+body {
+    background: linear-gradient(to bottom, #111, #222); /* Aplica un gradiente vertical */
+    font-family: Arial, sans-serif; /* Utiliza una fuente legible */
+    color: #fff; /* Color del texto en blanco */
+    display: flex; /* Utiliza flexbox para centrar el contenido verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Estilos para el título principal */
+h1 {
+    color: #fff; /* Cambia el color del texto a blanco */
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    width: 80%; /* Ajusta el ancho del contenedor */
+}
+
+/* Estilos para la tarjeta de inicio de sesión */
+.card {
+    height: auto; /* Para que el div de la tarjeta se ajuste automáticamente al contenido */
+    border: none; /* Quita el borde */
+    border-radius: 15px; /* Borde redondeado */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.card-header {
+    background-color: #007bff; /* Color de fondo del encabezado */
+    color: #fff; /* Color del texto del encabezado */
+    border-radius: 15px 15px 0 0; /* Borde redondeado solo en la parte superior */
+}
+
+.card-body {
+    padding: 30px; /* Espaciado interno */
+}
+
+/* Estilos para los campos de formulario */
+.form-group label {
+    font-weight: bold; /* Texto en negrita */
+    color: #333; /* Color del texto */
+}
+
+.form-control {
+    border: 2px solid #ddd; /* Borde del campo */
+    border-radius: 8px; /* Borde redondeado */
+    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Cambia el color del borde al enfocar el campo */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Sombra suave al enfocar el campo */
+}
+
+/* Estilos para el botón de inicio de sesión */
+.btn-primary {
+    background-color: #ff0037; /* Color de fondo del botón */
+    border: none; /* Quita el borde */
+    border-radius: 8px; /* Borde redondeado */
+}
+
+.btn-primary:hover {
+    background-color: #b3005a; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.btn-block {
+    margin-top: 20px; /* Espacio superior */
+}
+
+/* Nuevos estilos adicionales para compatibilidad con Bootstrap */
+
+/* Estilo para el mensaje de bienvenida */
+.card-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el grupo de botones */
+.btn-group a {
+    margin-right: 10px; /* Espaciado entre botones */
+}
+
+/* Asegurar que los botones ocupen el espacio adecuado */
+.btn {
+    padding: 10px 20px; /* Ajuste del padding */
+    font-size: 1rem; /* Ajuste del tamaño de la fuente */
+}
+
+/* Fondo de pantalla completo */
+html {
+    background: linear-gradient(to bottom, #111, #222);
+}
