@@ -63,4 +63,13 @@ public class Paketea {
 		return entrega_data;
 	}
 
+
+	public Object getBezeroaNAN() {
+		return helbidea;
+	}
+
+
+	public Object getLangileaNAN() {
+		return izena;
+	}
 }
