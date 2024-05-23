@@ -647,171 +647,168 @@ public class KudeatuOna extends JFrame {
 
 		JButton langileHistorialaBotoia = new JButton("Langile Historiala");
 		langileHistorialaBotoia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame frame = new JFrame("LANGILE HISTORIALA");
-
+		    public void actionPerformed(ActionEvent e) {
+		        // Limpiar el panel de información actual
+		        informazioPanela.removeAll();
+		        
+		        // Panel principal para el historial de langileak
 		        JPanel langileHistorialaPanel = new JPanel(new BorderLayout());
-		        frame.add(langileHistorialaPanel);
+		        informazioPanela.add(langileHistorialaPanel, BorderLayout.CENTER);
 		        
 		        JLabel lblHistoriala = new JLabel();
 
+		        // Panel superior para la selección de langileak
 		        JPanel langileakPanel = new JPanel(new BorderLayout());
 		        langileHistorialaPanel.add(langileakPanel, BorderLayout.NORTH);
-		        
-		        JPanel historialaIkusiPanel = new JPanel(new BorderLayout());
 		        
 		        JComboBox<String> banatzaileaComboBox = new JComboBox<String>();
 		        langileakPanel.add(banatzaileaComboBox, BorderLayout.NORTH);
 		        
-		        
 		        List<String> banatzaileaList = dbKontsultak.getLangileIzenak();
-
 		        for (String banatzailea : banatzaileaList) {
-		        	banatzaileaComboBox.addItem(banatzailea);
+		            banatzaileaComboBox.addItem(banatzailea);
 		        }
 
-                JButton langileH = new JButton("Historiala ikusi");
-                langileakPanel.add(langileH, BorderLayout.CENTER);
+		        JButton langileH = new JButton("Historiala ikusi");
+		        langileakPanel.add(langileH, BorderLayout.CENTER);
 
-                langileH.addActionListener(new ActionListener() {
-        			public void actionPerformed(ActionEvent e) {
-        				langileHistorialaPanel.add(historialaIkusiPanel, BorderLayout.CENTER);
-                        langileHistorialaPanel.revalidate(); 
-                        frame.pack(); 
-                        frame.setVisible(true);
-                        
-        		        JPanel botoiakPanel = new JPanel(new BorderLayout());
-        		        historialaIkusiPanel.add(botoiakPanel, BorderLayout.NORTH);
-        		        
-        		        
-        		        JPanel ordenatuPanel = new JPanel(new BorderLayout());
-        		        botoiakPanel.add(ordenatuPanel, BorderLayout.EAST);
-        		        
-        		        JComboBox<String> ordenatuComboBox = new JComboBox<String>();
-        		        ordenatuPanel.add(ordenatuComboBox, BorderLayout.NORTH);
-        		        
-        		        List<String> historialao = dbKontsultak.langileaHistorialaZutabeak();
-        		        for (String historialaF : historialao) {
-        		            ordenatuComboBox.addItem(historialaF);
-        		        }
-        		        
-        		        JButton ordenatu = new JButton("Ordenatu");
-        		        ordenatuPanel.add(ordenatu, BorderLayout.SOUTH);  
-        		                    		        		
-        		        
-        		        JPanel filtratuPanel = new JPanel(new BorderLayout());
-        		        botoiakPanel.add(filtratuPanel, BorderLayout.WEST);
-        		        
-        		        JComboBox<String> filtratuComboBox = new JComboBox<String>();
-        		        filtratuPanel.add(filtratuComboBox, BorderLayout.NORTH);
-        		        
-        		        List<String> historiala = dbKontsultak.langileaHistorialaZutabeak();
-        		        for (String historialaF : historiala) {
-        		        	filtratuComboBox.addItem(historialaF);
-        		        }
-        		        
-        		        new JLabel("Filtratu:");
-        		        JTextField filrtoaField = new JTextField(10);
-        		        filtratuPanel.add(filrtoaField, BorderLayout.CENTER);
-        		        
-        		        JButton filtratu = new JButton("Filtratu");
-        		        filtratuPanel.add(filtratu, BorderLayout.SOUTH);
-        		        		        
-        		                    		                  				
-        				
-        				historialaIkusiPanel.add(lblHistoriala, BorderLayout.SOUTH);
-        				
-    			        String izenaLangilea = (String) banatzaileaComboBox.getSelectedItem();
-    			        String nanLangilea = "";
-    			        
-    			        String[] nanAtera = izenaLangilea.split(",\\s*");
-                        if (nanAtera.length > 1) {
-                        	nanLangilea = nanAtera[1];
-                        }
-                                   		                    				
-                        List<Langilea> langileHistorialaList = dbKontsultak.getLangileHistoriala(nanLangilea);
+		        // Panel para mostrar el historial
+		        JPanel historialaIkusiPanel = new JPanel(new BorderLayout());
 
-                        StringBuilder labelText = new StringBuilder("<html>");
-                        for (Langilea historiala2 : langileHistorialaList) {
-                            labelText.append(historiala2.toString2()).append("<br>");
-                        }
-                        labelText.append("</html>");
+		        langileH.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                langileHistorialaPanel.add(historialaIkusiPanel, BorderLayout.CENTER);
+		                informazioPanela.revalidate(); 
+		                informazioPanela.repaint();
+		                
+		                JPanel botoiakPanel = new JPanel(new BorderLayout());
+		                historialaIkusiPanel.add(botoiakPanel, BorderLayout.NORTH);
 
-                        lblHistoriala.setText(labelText.toString());
- 		                  		                           			
-        				final String nan = nanLangilea;
-        				
-        				historialaIkusiPanel.invalidate();
-        				historialaIkusiPanel.validate();
-        				historialaIkusiPanel.repaint();
-        				
-        				ordenatu.addActionListener(new ActionListener() {
-        		            @Override
-        		            public void actionPerformed(ActionEvent e) {
-        		            	String aukera = (String) ordenatuComboBox.getSelectedItem();
-        		            	if("entrega_data".equals(aukera)) {
-        		            		aukera = "historiala." + aukera;
-        		            	}
-        		            	
-        		                List<Langilea> historialaList = dbKontsultak.langileHistorialaOrdenatu(aukera, nan);
-        		                StringBuilder labelText = new StringBuilder("<html>");
-        		                for (Langilea historiala2 : historialaList) {
-        		                    labelText.append(historiala2.toString2()).append("<br>");
-        		                }
-        		                labelText.append("</html>");
+		                // Panel de ordenación
+		                JPanel ordenatuPanel = new JPanel(new BorderLayout());
+		                botoiakPanel.add(ordenatuPanel, BorderLayout.EAST);
 
-        		                lblHistoriala.setText(labelText.toString());
+		                JComboBox<String> ordenatuComboBox = new JComboBox<String>();
+		                ordenatuPanel.add(ordenatuComboBox, BorderLayout.NORTH);
 
-        		                historialaIkusiPanel.invalidate();
-        		                historialaIkusiPanel.validate();
-        		                historialaIkusiPanel.repaint();
-        		            }
-        		        });
-        		        
-        		        filtratu.addActionListener(new ActionListener() {
-        		            @Override
-        		            public void actionPerformed(ActionEvent e) {
-        		            	String aukera = (String) filtratuComboBox.getSelectedItem();
-        		            	if("entrega_data".equals(aukera)) {
-        		            		aukera = "historiala." + aukera;
-        		            	}
-        		            	
-        		                List<Langilea> historialaList = dbKontsultak.langileHistorialaFiltratu(aukera, filrtoaField.getText(), nan);
-        		                StringBuilder labelText = new StringBuilder("<html>");
-        		                for (Langilea historiala2 : historialaList) {
-        		                    labelText.append(historiala2.toString2()).append("<br>");
-        		                }
-        		                labelText.append("</html>");
+		                List<String> historialao = dbKontsultak.langileaHistorialaZutabeak();
+		                for (String historialaF : historialao) {
+		                    ordenatuComboBox.addItem(historialaF);
+		                }
 
-        		                lblHistoriala.setText(labelText.toString());
+		                JButton ordenatu = new JButton("Ordenatu");
+		                ordenatuPanel.add(ordenatu, BorderLayout.SOUTH);  
+		                
+		                // Panel de filtrado
+		                JPanel filtratuPanel = new JPanel(new BorderLayout());
+		                botoiakPanel.add(filtratuPanel, BorderLayout.WEST);
 
-        		                historialaIkusiPanel.invalidate();
-        		                historialaIkusiPanel.validate();
-        		                historialaIkusiPanel.repaint();
-        		            }
-        		        });
-        			}
-        		});
-                
-                frame.pack();
-		        frame.setVisible(true);
-			}
+		                JComboBox<String> filtratuComboBox = new JComboBox<String>();
+		                filtratuPanel.add(filtratuComboBox, BorderLayout.NORTH);
+
+		                List<String> historiala = dbKontsultak.langileaHistorialaZutabeak();
+		                for (String historialaF : historiala) {
+		                    filtratuComboBox.addItem(historialaF);
+		                }
+
+		                JTextField filrtoaField = new JTextField(10);
+		                filtratuPanel.add(filrtoaField, BorderLayout.CENTER);
+
+		                JButton filtratu = new JButton("Filtratu");
+		                filtratuPanel.add(filtratu, BorderLayout.SOUTH);
+
+		                // Tabla para mostrar el historial
+		                DefaultTableModel tableModel = new DefaultTableModel();
+		                for (String column : historiala) {
+		                    tableModel.addColumn(column);
+		                }
+
+		                JTable historialaTable = new JTable(tableModel);
+		                historialaIkusiPanel.add(new JScrollPane(historialaTable), BorderLayout.CENTER);
+
+		                // Obtener el historial de langile seleccionada
+		                String izenaLangilea = (String) banatzaileaComboBox.getSelectedItem();
+		                String nanLangilea = "";
+
+		                String[] nanAtera = izenaLangilea.split(",\\s*");
+		                if (nanAtera.length > 1) {
+		                    nanLangilea = nanAtera[1];
+		                }
+
+		                List<Langilea> langileHistorialaList = dbKontsultak.getLangileHistoriala(nanLangilea);
+
+		                for (Langilea historiala2 : langileHistorialaList) {
+		                    Object[] rowData = { historiala2.getIzena(), historiala2.getBezeroaIzena(),
+		                            historiala2.getBezeroaHelbidea(), historiala2.getEntregaData(),
+		                            historiala2.getOharra() };
+		                    tableModel.addRow(rowData);
+		                }
+
+		                final String nan = nanLangilea;
+
+		                ordenatu.addActionListener(new ActionListener() {
+		                    @Override
+		                    public void actionPerformed(ActionEvent e) {
+		                        String aukera = (String) ordenatuComboBox.getSelectedItem();
+		                        if ("entrega_data".equals(aukera)) {
+		                            aukera = "historiala." + aukera;
+		                        }
+
+		                        List<Langilea> historialaList = dbKontsultak.langileHistorialaOrdenatu(aukera, nan);
+		                        tableModel.setRowCount(0);
+		                        for (Langilea historiala2 : historialaList) {
+		                            Object[] rowData = { historiala2.getIzena(), historiala2.getBezeroaIzena(),
+		                                    historiala2.getBezeroaHelbidea(), historiala2.getEntregaData(),
+		                                    historiala2.getOharra() };
+		                            tableModel.addRow(rowData);
+		                        }
+		                    }
+		                });
+
+		                filtratu.addActionListener(new ActionListener() {
+		                    @Override
+		                    public void actionPerformed(ActionEvent e) {
+		                        String aukera = (String) filtratuComboBox.getSelectedItem();
+		                        if ("entrega_data".equals(aukera)) {
+		                            aukera = "historiala." + aukera;
+		                        }
+
+		                        List<Langilea> historialaList = dbKontsultak.langileHistorialaFiltratu(aukera, filrtoaField.getText(), nan);
+		                        tableModel.setRowCount(0);
+		                        for (Langilea historiala2 : historialaList) {
+		                            Object[] rowData = { historiala2.getIzena(), historiala2.getBezeroaIzena(),
+		                                    historiala2.getBezeroaHelbidea(), historiala2.getEntregaData(),
+		                                    historiala2.getOharra() };
+		                            tableModel.addRow(rowData);
+		                        }
+		                    }
+		                });
+
+		                informazioPanela.revalidate();
+		                informazioPanela.repaint();
+		            }
+		        });
+
+		        informazioPanela.revalidate();
+		        informazioPanela.repaint();
+		    }
 		});
 		langileHistorialaBotoia.setBounds(10, 185, 164, 42);
 		botoiPanela.add(langileHistorialaBotoia);
 
 		JButton saioaItxiBotoia = new JButton("Saioa Itxi");
 		saioaItxiBotoia.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Cerrar la página actual
-				dispose();
-				// Abrir la página anterior
-				Nagusia paginaAnterior = new Nagusia();
-				paginaAnterior.setVisible(true);
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        // Cerrar la página actual
+		        dispose();
+		        // Abrir la página anterior
+		        Nagusia paginaAnterior = new Nagusia();
+		        paginaAnterior.setVisible(true);
+		    }
 		});
 		saioaItxiBotoia.setBounds(47, 282, 89, 23);
 		botoiPanela.add(saioaItxiBotoia);
+
 
 		JLabel kudeatuLabel = new JLabel("KUDEATU");
 		kudeatuLabel.setFont(new Font("Verdana", Font.BOLD, 35));
