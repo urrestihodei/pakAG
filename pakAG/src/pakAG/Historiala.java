@@ -37,4 +37,24 @@ public class Historiala {
                " Oharra: " + oharra + "<br>" +
                "--------------------<br>";
     }
+    
+    public Object getLangileaIzena() {
+		return langileaIzena;
+	}
+    
+    public Object getBezeroaIzena() {
+		return bezeroaIzena;
+	}
+    
+    public Object getBezeroaHelbidea() {
+		return bezeroaHelbidea;
+	}
+    
+    public Object getEntregaData() {
+		return entrega_data;
+	}
+    
+    public Object getOharra() {
+		return oharra;
+	}
 }
