@@ -66,7 +66,7 @@ public class Nagusia extends JFrame {
                 	 Kudeatu kudeatu = new Kudeatu();
                      kudeatu.setVisible(true);
                 } else {
-                    messageLabel.setText("Erabiltzaile edo pasahitza okerrak.");
+                    messageLabel.setText("<html><font color = 'red'> Erabiltzaile edo pasahitza okerrak.</font></html>");
                 }
             }
         });
