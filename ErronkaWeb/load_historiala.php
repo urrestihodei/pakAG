@@ -8,7 +8,7 @@ $result = $conn->query($sql);
 // Si hay al menos una fila de resultados
 if ($result->num_rows > 0) {
     // Mostrar los datos en una tabla HTML
-    echo "<table class='table'><tr><th>ID</th><th>Data</th><th>Izena</th><th>Produktua</th></tr>";
+    echo "<table class='table'><tr><th>ID</th><th>Data</th><th>Izena</th><th>Produktua</th><th>Oharra</th></tr>";
     // Iterar sobre los resultados y mostrar cada fila de datos
     while ($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["ID"] . "</td>

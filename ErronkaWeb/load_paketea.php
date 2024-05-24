@@ -1,39 +1,56 @@
 <?php
 include 'konexioa.php';
 
-// Obtener el DNI del empleado actualmente autenticado
+if (!isset($_SESSION['username'])) {
+    die('Usuario no autenticado');
+}
+
 $empleado_dni = $_SESSION['username'];
 
-// Consulta SQL para seleccionar los datos de la tabla deseada asociados con el DNI del empleado
-$sql = "SELECT * FROM paketea p
-                JOIN langilea l ON p.langilea_nan = l.langilea_nan
-                JOIN bezeroa b ON p.bezeroa_nan = b.bezeroa_nan 
-                WHERE erabiltzailea = ?";
+$sql = "SELECT p.*, b.bezeroa_izena, b.bezeroa_helbidea, b.bezeroa_telefonoa FROM paketea p
+        JOIN langilea l ON p.langilea_nan = l.langilea_nan
+        JOIN bezeroa b ON p.bezeroa_nan = b.bezeroa_nan 
+        WHERE l.erabiltzailea = ?";
 $stmt = $conn->prepare($sql);
+if ($stmt === false) {
+    die('Prepare failed: ' . htmlspecialchars($conn->error));
+}
 $stmt->bind_param("s", $empleado_dni);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Si hay al menos una fila de resultados
 if ($result->num_rows > 0) {
-    // Mostrar los datos en una tabla HTML
-    echo "<form method='post' id='paketeaForm'>";
-    echo "<table class='table'><tr><th>ID</th><th>Data</th><th>Izena</th><th>Produktua</th><th>Egoera</th><th>Acción</th></tr>";
-    // Iterar sobre los resultados y mostrar cada fila de datos
+    echo "<table class='table table-striped table-bordered'>
+            <thead class='table-dark'>
+                <tr>
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Helbidea</th>
+                    <th>Bezeroa Izena</th>
+                    <th>Telefonoa</th>
+                    <th>Egoera</th>
+                </tr>
+            </thead>
+            <tbody>";
     while ($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["ID"] . "</td>
-        <td>" . $row["entrega_data"] . "</td>
-        <td>" . $row["langilea_nan"] . "</td>
-        <td>" . $row["bezeroa_nan"] . "</td>
-        <td>";
-        // Mostrar el estado directamente
-        echo ($row["entregatuta"] == 1) ? "Entregado" : "Pendiente";
-        echo "</td><td><button type='button' class='entregadoButton' data-id='" . $row["ID"] . "'>Entregado</button></td></tr>";
+        echo "<tr>
+                <td>" . $row['ID'] . "</td>
+                <td>" . $row['entrega_data'] . "</td>
+                <td>" . $row['bezeroa_helbidea'] . "</td>
+                <td>" . $row['bezeroa_izena'] . "</td>
+                <td>" . $row['bezeroa_telefonoa'] . "</td>
+                <td>";
+        if ($row['zein_entregatu'] == 0) {
+            echo "<button type='button' class='btn btn-success entregar-btn' data-id='" . $row['ID'] . "'>Entregatu</button>";
+        } else {
+            echo "<span class='badge bg-success'>Aukeratuta</span>";
+        }
+        echo "</td>
+              </tr>";
     }
-    echo "</table>";
-    echo "</form>";
+    echo "</tbody></table>";
 } else {
-    echo "Ez dago langilearen NANarekin lotutako paketerik.";
+    echo "<div class='alert alert-warning' role='alert'>Ez dira emaitzak aurkitu.</div>";
 }
 
 $stmt->close();

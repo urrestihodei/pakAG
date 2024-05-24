@@ -1,29 +1,71 @@
 <?php
 include 'konexioa.php';
-session_start(); // Asegúrate de iniciar la sesión
 
-// Si se envió el formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verificar si se ha hecho clic en algún botón de entrega
-    foreach ($_POST as $key => $value) {
-        if (strpos($key, 'entregado_') !== false) {
-            // Obtener el ID del pedido desde el nombre del botón
-            $pedido_id = substr($key, strlen('entregado_'));
-            
-            // Actualizar el valor de la columna "Egoera" en la base de datos para el registro correspondiente
-            $sql_update = "UPDATE paketea SET entregatuta = 1 WHERE ID = ?";
-            $stmt = $conn->prepare($sql_update);
-            $stmt->bind_param("i", $pedido_id); // 'i' indica que el parámetro es un entero
-            $stmt->execute();
-            $stmt->close();
+if (!isset($_SESSION['username'])) {
+    die('Usuario no autenticado');
+}
+
+$response = array('status' => 'error', 'message' => 'Errorea.');
+
+if (isset($_POST['pakete_id'])) {
+    $pakete_id = $_POST['pakete_id'];
+
+    // Comprobar si ya hay un paquete con zein_entregatu = 1
+    $check_sql = "SELECT ID FROM paketea WHERE zein_entregatu = 1";
+    $check_result = $conn->query($check_sql);
+
+    if ($check_result->num_rows > 0) {
+        $existing_pakete = $check_result->fetch_assoc();
+        $existing_pakete_id = $existing_pakete['ID'];
+
+        // Si ya hay un paquete con zein_entregatu = 1, preguntar confirmación
+        if (isset($_POST['confirm']) && $_POST['confirm'] == 'true') {
+            // Actualizar el paquete existente a zein_entregatu = 0
+            $reset_sql = "UPDATE paketea SET zein_entregatu = 0 WHERE ID = ?";
+            $reset_stmt = $conn->prepare($reset_sql);
+            if ($reset_stmt === false) {
+                die('Prepare failed: ' . htmlspecialchars($conn->error));
+            }
+            $reset_stmt->bind_param("i", $existing_pakete_id);
+            if (!$reset_stmt->execute()) {
+                die('Execute failed: ' . htmlspecialchars($reset_stmt->error));
+            }
+            $reset_stmt->close();
+
+            // Actualizar el nuevo paquete a zein_entregatu = 1
+            $update_sql = "UPDATE paketea SET zein_entregatu = 1 WHERE ID = ?";
+            $update_stmt = $conn->prepare($update_sql);
+            if ($update_stmt === false) {
+                die('Prepare failed: ' . htmlspecialchars($conn->error));
+            }
+            $update_stmt->bind_param("i", $pakete_id);
+            if (!$update_stmt->execute()) {
+                die('Execute failed: ' . htmlspecialchars($update_stmt->error));
+            } else {
+                $response = array('status' => 'success', 'message' => "$pakete_id ID-a duen paketea ondo aktualizatu da.");
+            }
+            $update_stmt->close();
+        } else {
+            $response = array('status' => 'confirm', 'message' => "Dagoeneko aukeratua duzu entregatzeko pakete bat, $existing_pakete_id ID-a duena. Aktualizatu nahi duzu?");
         }
+    } else {
+        // Si no hay paquete con zein_entregatu = 1, actualizar el paquete directamente
+        $update_sql = "UPDATE paketea SET zein_entregatu = 1 WHERE ID = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        if ($update_stmt === false) {
+            die('Prepare failed: ' . htmlspecialchars($conn->error));
+        }
+        $update_stmt->bind_param("i", $pakete_id);
+        if (!$update_stmt->execute()) {
+            die('Execute failed: ' . htmlspecialchars($update_stmt->error));
+        } else {
+            $response = array('status' => 'success', 'message' => "$pakete_id  ID-a duen paketea ondo aktualizatu da.");
+        }
+        $update_stmt->close();
     }
-
-    // Eliminar las filas donde el paquete está marcado como entregado
-    $sql_delete = "DELETE FROM paketea WHERE entregatuta = 1";
-    $conn->query($sql_delete);
 }
 
 $conn->close();
-?>
 
+echo json_encode($response);
+?>
