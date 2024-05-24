@@ -719,9 +719,9 @@ public class KudeatuOna extends JFrame {
 
 		                // Tabla para mostrar el historial
 		                DefaultTableModel tableModel = new DefaultTableModel();
-		                for (String column : historiala) {
-		                    tableModel.addColumn(column);
-		                }
+						tableModel.addColumn("ID");
+						tableModel.addColumn("Helbidea");
+						tableModel.addColumn("Entrega Data");
 
 		                JTable historialaTable = new JTable(tableModel);
 		                historialaIkusiPanel.add(new JScrollPane(historialaTable), BorderLayout.CENTER);
@@ -738,9 +738,8 @@ public class KudeatuOna extends JFrame {
 		                List<Langilea> langileHistorialaList = dbKontsultak.getLangileHistoriala(nanLangilea);
 
 		                for (Langilea historiala2 : langileHistorialaList) {
-		                    Object[] rowData = { historiala2.getIzena(), historiala2.getBezeroaIzena(),
-		                            historiala2.getBezeroaHelbidea(), historiala2.getEntregaData(),
-		                            historiala2.getOharra() };
+		                	Object[] rowData = { historiala2.getID(), historiala2.getAbizena(),
+                                    historiala2.getBezeroaHelbidea(), historiala2.getEntregaData()};
 		                    tableModel.addRow(rowData);
 		                }
 
@@ -757,9 +756,8 @@ public class KudeatuOna extends JFrame {
 		                        List<Langilea> historialaList = dbKontsultak.langileHistorialaOrdenatu(aukera, nan);
 		                        tableModel.setRowCount(0);
 		                        for (Langilea historiala2 : historialaList) {
-		                            Object[] rowData = { historiala2.getIzena(), historiala2.getBezeroaIzena(),
-		                                    historiala2.getBezeroaHelbidea(), historiala2.getEntregaData(),
-		                                    historiala2.getOharra() };
+		                            Object[] rowData = { historiala2.getIzena(), historiala2.getAbizena(),
+		                                    historiala2.getBezeroaHelbidea(), historiala2.getEntregaData()};
 		                            tableModel.addRow(rowData);
 		                        }
 		                    }
@@ -776,9 +774,8 @@ public class KudeatuOna extends JFrame {
 		                        List<Langilea> historialaList = dbKontsultak.langileHistorialaFiltratu(aukera, filrtoaField.getText(), nan);
 		                        tableModel.setRowCount(0);
 		                        for (Langilea historiala2 : historialaList) {
-		                            Object[] rowData = { historiala2.getIzena(), historiala2.getBezeroaIzena(),
-		                                    historiala2.getBezeroaHelbidea(), historiala2.getEntregaData(),
-		                                    historiala2.getOharra() };
+		                        	Object[] rowData = { historiala2.getIzena(), historiala2.getAbizena(),
+		                                    historiala2.getBezeroaHelbidea(), historiala2.getEntregaData()};
 		                            tableModel.addRow(rowData);
 		                        }
 		                    }
