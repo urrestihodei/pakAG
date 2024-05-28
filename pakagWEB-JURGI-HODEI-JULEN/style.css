@@ -1,0 +1,101 @@
+/* Estilo pertsonalizatuak */
+
+/* Gradientea duen atzeko planoa */
+body, html {
+    height: 100%; /* Doitu gorputzaren eta HTMLren altuera %100era */
+    margin: 0; /* Kendu lehenetsitako ertza */
+    padding: 0; /* Kendu lehenetsitako betegarri */
+}
+
+body {
+    background: linear-gradient(to bottom, #111, #222); /* Aplikatu gradiente bertikala */
+    font-family: Arial, sans-serif; /* Erabili irakurgarria den letra-tipoa */
+    color: #fff; /* Testuaren kolorea zuria */
+    display: flex; /* Erabili flexbox edukia bertikalki zentratzea lortzeko */
+    justify-content: center; /* Zentra horizontalki */
+    align-items: center; /* Zentra bertikalki */
+}
+
+/* Titulu nagusiaren estiloak */
+h1 {
+    color: #fff; /* Aldatu testuaren kolorea zurira */
+}
+
+/* Eduki nagusiaren estiloak */
+.container {
+    width: 80%; /* Doitu edukiontziaren zabalera */
+}
+
+/* Saio-hasierako txartelaren estiloak */
+.card {
+    height: auto; /* Txartelaren div-a automatikoki edukira egokitzea */
+    border: none; /* Kendu ertza */
+    border-radius: 15px; /* Ertz borobildua */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Itzal leuna */
+}
+
+.card-header {
+    background-color: #007bff; /* Goiburuaren atzeko kolorea */
+    color: #fff; /* Goiburuaren testuaren kolorea */
+    border-radius: 15px 15px 0 0; /* Ertz borobildua goiko aldean bakarrik */
+}
+
+.card-body {
+    padding: 30px; /* Barruko espazioa */
+}
+
+/* Formulario-eremuen estiloak */
+.form-group label {
+    font-weight: bold; /* Testua lodiz */
+    color: #333; /* Testuaren kolorea */
+}
+
+.form-control {
+    border: 2px solid #ddd; /* Eremuaren ertza */
+    border-radius: 8px; /* Ertz borobildua */
+    transition: border-color 0.3s ease; /* Ertzaren kolorearen trantsizio leuna */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Aldatu ertza kolorea eremua fokuratzean */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Itzal leuna eremua fokuratzean */
+}
+
+/* Saio-hasierako botoiaren estiloak */
+.btn-primary {
+    background-color: #ff0037; /* Botoiaren atzeko kolorea */
+    border: none; /* Kendu ertza */
+    border-radius: 8px; /* Ertz borobildua */
+}
+
+.btn-primary:hover {
+    background-color: #b3005a; /* Aldatu atzeko kolorea sagua pasatzean */
+}
+
+.btn-block {
+    margin-top: 20px; /* Goiko espazioa */
+}
+
+/* Bootstrap-ekin bateragarritasunerako estilo berriak */
+
+/* Ongi etorri mezua estiloa */
+.card-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Botoi taldearen estiloa */
+.btn-group a {
+    margin-right: 10px; /* Botoien arteko espazioa */
+}
+
+/* Ziurtatu botoiek beharrezko espazioa betetzen dutela */
+.btn {
+    padding: 10px 20px; /* Betegarriaren doiketa */
+    font-size: 1rem; /* Letra-tipoaren tamainaren doiketa */
+}
+
+/* Pantaila osoaren atzeko planoa */
+html {
+    background: linear-gradient(to bottom, #111, #222);
+}
