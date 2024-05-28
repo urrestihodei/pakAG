@@ -61,10 +61,11 @@ public class Nagusia extends JFrame {
                 if (dbKontsultak.saioaHasi(erabiltzailea, pasahitza)) {            	
                 	 Kudeatu kudeatu = new Kudeatu();
                      kudeatu.setVisible(true);
+                    dispose();
                 } else {
                     messageLabel.setText("<html><font color = 'red'> Erabiltzaile edo pasahitza okerrak.</font></html>");
                 }
-                dispose();
+                
             }
         });
         btnNewButton.setBounds(458, 137, 89, 23);
